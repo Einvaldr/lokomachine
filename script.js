@@ -1,0 +1,18 @@
+function init() {
+  var url = window.location.href;
+  var params = url.split(/[\&\?=]/);
+  var date = decodeURI(params[2]);
+  var score = params[4];
+  var discount = params[6];
+  var time = date.split(/[: -]/);
+  var finish = new Date(time[0], (time[1] - 1), time[2], time[3], time[4], time[5], 0);
+  window.setInterval(function() {
+    var difference = Math.round((finish - (new Date())) / 1000);
+    var minutes = Math.floor(difference / 60);
+    var seconds = difference % 60;
+    document.getElementById('timer').innerHTML = minutes + ':' + seconds;
+  }, 100);
+  document.getElementById('timer').innerHTML = date;
+  document.getElementById('score').innerHTML = score;
+  document.getElementById('discount').innerHTML = discount + '%';
+}
